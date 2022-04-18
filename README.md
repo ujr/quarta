@@ -82,3 +82,9 @@ The Master Boot Record (MBR) scheme was introduced by PC DOS
 in the early 1980ies. As of 2022 it is being (or mostly has been)
 superseded by a new scheme known as GUID Partition Table (GPT),
 which is part of UEFI, the successor of good-old BIOS.
+
+## License
+
+This project is dedicated to the public domain, regardless of any
+copyright statements that may still be included in the files.
+The Unlicense (see file [LICENSE](LICENSE)) takes precedence!
