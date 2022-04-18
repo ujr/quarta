@@ -1,0 +1,227 @@
+
+
+      Q U A R T A   v2.0
+
+      Der kompakte Boot-Manager, der inklusive Partitionstabelle
+      in den ersten 512 Bytes der Festplatte Platz findet!
+
+   ����������������������������������������������������������������
+
+
+
+   Inhalt
+
+   - Copyright, FreeWare, Legal Stuff
+   - Dateiliste
+   - Was ist ein Boot-Manager?
+   - Was ist besonders an QUARTA?
+   - Die Bedienung von QUARTA
+   - So installieren Sie QUARTA
+   - Was noch zu sagen bleibt
+
+
+
+
+   Copyright
+
+     Die QUARTA Software wurde 1995 von Urs-Jakob R�etschi
+     geschrieben und als FreeWare deklariert.
+     Das Copyright liegt jedoch weiterhin beim Autor.
+
+
+
+   FreeWare
+
+     Die QUARTA Software darf frei kopiert und an Kollegen und
+     Freunde weitergegeben werden, solange kein Geld daf�r
+     verlangt wird und ALLE Dateien gem�ss der weiter unten
+     in diesem Dokument aufgef�hrten Dateiliste in UNVER�NDERTEM
+     Zustand weitergegeben werden!
+
+
+
+   Legal Stuff
+
+     Wer die QUARTA Software verwendet, tut dies auf seine eigene
+     Verantwortung. F�r Sch�den und Folgesch�den jeglicher Art, die
+     aus der Verwendung der Software QUARTA hervorgehen, �bernimmt
+     der Autor (siehe Copyright) weder Verantwortung noch Haftung.
+     Weiter garantiert er keinesfalls, dass die Software QUARTA die
+     ihr zugedachten Aufgaben korrekt zu l�sen vermag. Es besteht
+     kein Anspruch auf Support.
+
+
+
+   Dateiliste
+
+     - QUARTA.EXE     Das Installationsprogramm inkl. Boot-Manager
+     - QUARTA.TXT     Dokumentation - Sie lesen sie gerade...
+
+
+
+   Was ist ein Boot-Manager?
+
+     Wenn Sie Ihren Computer starten und keine Diskette im Laufwerk
+     haben, l�dt das BIOS den ersten Sektor Ihrer Harddisk ins RAM
+     und f�hrt den darin enthaltenen Code aus, der zur Aufgabe hat,
+     das Betriebssystem zu laden und zu starten.
+
+     Was aber, wenn Sie mehr als ein Betriebssystem auf Ihrer Fest-
+     platte haben? Dann wurde Ihre Festplatte in zwei oder mehrere
+     Teilbereiche - Partitionen genannt - aufgeteilt. Wo auf der HD
+     die Partitionen beginnen und enden, steht im ersten Sektor der
+     Harddisk, dem Master Boot Record (MBR). Zus�tzlich steht dort,
+     welche Partition die aktive ist und somit welches Betriebssys-
+     tem gestartet wird. Mittels Dienstprogrammen wie zum Beispiel
+     fdisk von MS-DOS kann man die aktive Partition �ndern, also
+     festlegen, dass nach dem Einschalten des Computers ein anderes
+     Betriebssystem gestartet wird.
+
+     Ein Boot-Manager macht die Verwendung von solchen Dienstpro-
+     grammen �berfl�ssig, indem er nach dem Start des Rechners den
+     Anwender die zu startende Partition ausw�hlen l�sst.
+     Es ist offensichtlich, dass ein Boot-Manager nur f�r Leute mit
+     mehr als einem Betriebssystem auf einem Computer interessant
+     ist.
+
+
+
+   Was ist besonders an QUARTA?
+
+     QUARTA ist ein solcher Boot-Manager. Um es gleich vorwegzu-
+     nehmen: QUARTA ist weder extrem leistungsf�hig noch besonders
+     flexibel. Bei seiner Entwicklung stand im Vordergrund, dass
+     QUARTA mit m�glichst wenig Platz auf der Harddisk auskommen
+     und mit der standard Partitionstabelle zusammenarbeiten muss.
+
+     Um den Speicherplatz-Anforderungen gerecht zu werden wurde der
+     QUARTA-Code solange vereinfacht und gestaucht, bis er ganz-
+     heitlich in den neben der Partitionstabelle noch 446 freien
+     Bytes im ersten Sektor auf der Harddisk untergebracht werden
+     konnte.
+
+     Ein weiteres Merkmal von QUARTA ist, dass es - wenn Sie nicht
+     explizit eine Partition ausw�hlen - nach ungef�hr 10 Sekunden
+     selbst�ndig die aktive Partition bootet und nicht bis in alle
+     Ewigkeit auf eine Reaktion des Anwenders wartet.
+
+
+
+   Die Bedienung von QUARTA
+
+     QUARTA.EXE ist nicht der Boot-Manager selbst, sondern vielmehr
+     das ihn enthaltende Installationsprogramm. Wenn Sie den Boot-
+     Manager installieren, schreibt das Installationsprogramm einen
+     Teil seines Codes in den MBR. Wenn Sie Ihren Computer dann das
+     n�chste mal starten, sollte sich QUARTA bald bemerkbar machen:
+
+           QUARTA - (c) 1995-97 by UJR
+
+           To boot
+             - your active partition hit ESC
+             - any other partition hit 1..4
+             - from your 2nd harddisk hit s
+
+           ���۱���������������������������������
+
+     Wenn Sie nun ESC (oder irgendeine Taste ausser 1, 2, 3, 4 und
+     s dr�cken), wird sofort die aktive Partition gebootet. M�chten
+     Sie jedoch eine andere als die aktive Partition starten, haben
+     Sie die Tasten 1 bis 4 zur Verf�gung. Dabei entsprechen die
+     Tasten den maximal vier m�glichen Partitionen.
+
+     Wenn Sie keine Taste dr�cken, wird der gepunktet dargestellte
+     Balken zunehmend eingef�rbt und - wenn er ganz grau ist - auto-
+     matisch die aktive Partition gebootet.
+
+     Der geringe Platz reichte leider nicht aus, um anzuzeigen, ob
+     eine Partition �berhaupt ein startbares Betriebssystem enth�lt.
+     Ist dies nicht der Fall, wird sich Ihr Rechner aufh�ngen.
+     Starten Sie ihn dann neu - diesmal wissen Sie, dass Sie diese
+     Partition nicht booten k�nnen.
+
+
+
+   So installieren Sie QUARTA
+
+     Zuerst sollten Sie eine Sicherungskopie Ihres gegenw�rtigen
+     MBR anfertigen. Verwenden Sie dazu folgende Befehlszeile:
+
+          quarta -r mbr.bak [Enter]
+
+     Der MBR wird ausgelesen und sein Inhalt in die Datei 'mbr.bak'
+     geschrieben. Kopieren Sie diese Datei zusammen mit quarta.exe
+     auf eine DOS Bootdiskette (wie Sie eine solche erstellen, steht
+     in Ihren DOS-Handb�chern). Mit dieser Diskette k�nnen Sie den
+     alten MBR re-installieren, wenn etwas schiefgehen sollte.
+
+     Nun k�nnen Sie den QUARTA Boot-Manager installieren. Rufen Sie
+     dazu das Installations-Programm quarta.exe ohne Parameter auf:
+
+          quarta [Enter]
+
+     Best�tigen Sie die Frage, ob Sie Ihren MBR ver�ndern wollen mit
+     y(es). Wenn Sie n(o) eingeben, wird das Programm sofort beendet.
+
+     Wenn Sie Ihren Rechner das n�chste mal neu starten, wird QUARTA
+     sich melden. Verfahren Sie dann wie weiter oben beschrieben.
+     Sollte etwas schief gehen, so gibt es daf�r zwei Gr�nde:
+
+     1) In Ihrem MBR befindet sich keine MS-DOS kompatible Partitions-
+        tabelle. Mit dieser weiss QUARTA nat�rlich nichts anzufangen.
+
+     2) Ihr BIOS ist nicht kompatibel zu meinem BIOS, zumindest was
+        die von QUARTA verwendeten BIOS-Aufrufe anbelangt.
+
+     Wenn QUARTA auf Ihrem Computer nicht l�uft, k�nnen Sie den alten
+     MBR wieder installieren, sofern Sie die empfohlene Sicherungs-
+     kopie erstellt haben. Verfahren Sie dazu wie folgt:
+
+     1) Starten Sie Ihren Rechner mit der Sicherungs-Diskette
+
+     2) Der folgende Befehl installiert den alten MBR:
+
+          quarta -w mbr.bak
+
+        Wenn Sie Ihre Sicherungskopie anders als 'mbr.bak' benannt
+        haben, sollten Sie das hier ber�cksichtigen.
+        Alternativ k�nnen Sie auch fdisk von MS-DOS verwenden:
+
+          fdisk /mbr
+
+        schreibt den original MS-DOS MBR code.
+
+     3) Vergessen Sie QUARTA und schauen Sie sich nach einem anderen
+        Boot-Manager um.
+
+     Mit grosser Wahrscheinlichkeit verl�uft die Installation jedoch
+     ohne Probleme und QUARTA wird seiner Aufgabe gerecht werden.
+     M�chten Sie QUARTA irgendwann mal wieder entfernen, k�nnen Sie
+     das wie oben beim Nicht-Funktionieren beschrieben tun.
+
+
+
+   Was noch zu sagen bleibt
+
+     Mit dem Aufruf "quarta -?" erkl�rt sich das Installations-
+     Programm selbst.
+
+     Der QUARTA Installer quarta.exe arbeitet auch mit der zweiten
+     Harddisk (falls vorhanden). F�gen Sie dazu der Befehlszeile
+     den Parameter "-2" hinzu.
+
+     Sie k�nnen QUARTA auch zur Erstellung von Sicherungskopien
+     Ihres MBR (z.B. gegen Besch�digung durch Viren) benutzen. Sie
+     m�ssen dabei aber beachten, dass QUARTA nur den Code des MBR,
+     nicht aber die Partitions-Tabelle in den MBR schreibt.
+
+     QUARTA entstand, weil ich einen Boot-Manager ben�tigte und ist
+     deshalb exakt auf meine Bed�rfnisse zugeschnitten. Stellen Sie
+     gleiche oder �hnliche Anforderungen an Ihren Boot-Manager,
+     werden Sie mit QUARTA zufrieden sein.
+
+     MS-DOS ist eingetragenes Warenzeichen der Microsoft Corporation
+
+
+
+   Luzern, 30.03.97, UJR

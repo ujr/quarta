@@ -1,0 +1,82 @@
+<html><head><title>Quarta Bootmanager</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../plain.css">
+</head><body><!-- hand crafted html ;-) -->
+
+<p><a href="http://www.geo.unizh.ch/~uruetsch/">UJR</a>
+/ <a href="../../software.html">Software</a>
+/ Historic IBM PC</p>
+
+<h1>Quarta Bootmanager</h1>
+
+<p>Quarta is a boot manager for IBM PC computers.
+It is so tiny that it fits into the first sector of any harddisk,
+along with the partition table. I wrote quarta a long time ago
+because I was in need of a boot manager and because I was curious
+about low level programming. It is now only of historical interest,
+if it is at all interesting...</p>
+
+<p>Technical note: In the IBM PC world, the first sector of a
+hard disk is known as the <i>Master Boot Record</i> (MBR). It
+contains at most 400 bytes of code followed by the partition
+table of about 100 bytes at the end of the sector. This table
+has four entries and each describes one partition of the disk:
+where it starts, where it ends, what type it is, etc.
+When the computer is turned on, the BIOS loads the hard disk's
+first sector into memory and transfers control to the code
+contained in it. This code looks at the partition table and
+loads the first sector of the one partition that is marked
+as 'active' into memory. This sector is known as the <i>boot
+sector</i>. It contains a small program that loads and launches
+the operating system. The quarta boot manager replaces the code
+in the MBR by a program that presents a simple user interface
+that allows the user to choose which of the (at most) four
+partitions to start.</p>
+
+<ul>
+<li>Read the documentation: <a href="quarta.txt">quarta.txt</a></li>
+<li>Download the installer: <a href="quarta.exe">quarta.exe</a></li>
+<li>Browse the source code: <a href="quarta.asm">quarta.asm</a>
+    and <a href="quarta.pas">quarta.pas</a></li>
+</ul>
+
+<p>The source code consists of two modules, the boot manager
+written in assembler and the installation program, written
+mostly in Pascal with some assembler. Both modules are linked
+together to build the executable, quarta.exe.
+Here is the DOS batch file used to do that:</p>
+
+<pre>
+@echo off
+echo This batch file builds the QUARTA boot manager
+echo and installation program. The boot manager code
+echo will actually be incorporated into the installer.
+pause
+
+tasm quarta.asm
+tlink quarta.obj
+exe2bin quarta.exe quarta.bin
+binobj quarta.bin quarta.b2o partcode
+bpc quarta.pas
+del quarta.obj
+del quarta.map
+del quarta.bin
+del quarta.b2o
+
+echo.
+echo Now you should have a newly built QUARTA.EXE; copy it
+echo along with QUARTA.TXT to the distribution media.
+echo.
+echo QUARTA is copyright (c) 1995, 1996, 1997 by UJR
+</pre>
+
+<p>I used the Borland Pascal tools: <b>tasm</b> is the assembler,
+<b>tlink</b> the linker, <b>exe2bin</b> converts an exe file into
+a binary file, and <b>binobj</b> converts this binary file into
+an object code file, which is referred to from the Pascal source
+file using the <tt>{$L QUARTA.B2O}</tt> linker directive; finally,
+<b>bpc</b> compiles the Pascal source code and links it with the
+boot manager object code.</p>
+
+<div align="right">This site: <i>ujr/2004-10-03</i></div>
+</body></html>
